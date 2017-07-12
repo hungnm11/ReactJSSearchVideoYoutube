@@ -34,15 +34,14 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: [/node_modules/],
-        use: [{
-          loader: 'babel-loader',
-          options: {presets: ['es2015', 'react']},
-        }],
+      { 
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+            presets: ['es2015','react']
+        }
       },
-     
       {
         test: /\.less$/,
         use: [ 'style-loader', 'css-loader', 'less-loader' ]
@@ -62,23 +61,17 @@ module.exports = {
         test: /\.(sass|scss)$/,
         use: extractSass.extract({
           use: [{
-              loader: "css-loader"
+              loader: 'css-loader'
           }, {
-              loader: "sass-loader"
+              loader: 'sass-loader'
           }],
           // use style-loader in development
-          fallback: "style-loader"
+          fallback: 'style-loader',
+          publicPath: '/dist'
         })
       },
        {
         test: /\.css$/,
-        // use: [
-        //   'style-loader',
-        //   {
-        //     loader: 'css-loader',
-        //     options: { module: true }
-        //   }
-        // ]
         use: extractCSS.extract({
           use: [{
             loader: 'css-loader',
@@ -98,7 +91,8 @@ module.exports = {
     noInfo: true,
     watchContentBase: true,
     hot: false,
-    // inline: false
+    // inline: false,
+    // open: true
   },
   devtool: "cheap-eval-source-map",
   devtool: "inline-source-map"

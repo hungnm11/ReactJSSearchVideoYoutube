@@ -10,7 +10,6 @@ class Container extends React.Component {
         <li>About</li>
         <li>Contact</li>
       </ul>
-      {this.props.children }
       </div>
     )
   }

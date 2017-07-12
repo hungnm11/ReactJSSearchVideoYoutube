@@ -4,5 +4,5 @@ import Container from './container';
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/scss/main.scss';
 
-render(<Container />, document.getElementById('app'));
+render(<Container />, document.getElementById('root'));
 
