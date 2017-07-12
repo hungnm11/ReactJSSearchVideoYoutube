@@ -97,7 +97,8 @@ module.exports = {
     port: 9000,
     noInfo: true,
     watchContentBase: true,
-    hot: true
+    hot: false,
+    // inline: false
   },
   devtool: "cheap-eval-source-map",
   devtool: "inline-source-map"

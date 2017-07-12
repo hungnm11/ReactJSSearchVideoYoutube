@@ -1,9 +1,17 @@
-import React from 'react';
+import React from 'react'
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 
 class Container extends React.Component {
   render() {
     return (
-      <h1 className="title">Hello</h1>
+      <div>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+      {this.props.children }
+      </div>
     )
   }
 }
