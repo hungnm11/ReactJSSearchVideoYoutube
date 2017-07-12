@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import './style.css';
+import './assets/scss/style.scss';
 
 console.log('Hello');
 

@@ -5,6 +5,10 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin('[name].bundle.css');
 const bootstrapEntryPoints = require('./webpack.bootstrap.config.js');
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
 
 module.exports = {
   entry: {
@@ -12,7 +16,9 @@ module.exports = {
     vendor: ['lodash', 'bootstrap/dist/css/bootstrap.css'],
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'index.html')
+    }),
     new CleanWebpackPlugin(['dist']),
     new webpack.HotModuleReplacementPlugin(),
     extractCSS
@@ -43,6 +49,10 @@ module.exports = {
         ]
       },
       {
+        test: /\.less$/,
+        use: [ 'style-loader', 'css-loader', 'less-loader' ]
+      },
+      {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader']
       },
@@ -55,7 +65,15 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        loader: extractCSS.extract(['css-loader','sass-loader'])
+        use: extractSass.extract({
+                use: [{
+                    loader: "css-loader"
+                }, {
+                    loader: "sass-loader"
+                }],
+                // use style-loader in development
+                fallback: "style-loader"
+            })
       }
     ]
   },
@@ -69,5 +87,4 @@ module.exports = {
   },
   devtool: "cheap-eval-source-map",
   devtool: "inline-source-map"
-
 };
