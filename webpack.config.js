@@ -35,7 +35,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: [/node_modules/],
         use: [{
           loader: 'babel-loader',
@@ -85,8 +85,11 @@ module.exports = {
           }],
           fallback: 'style-loader'
         })
-      }
+      },
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
