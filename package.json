@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --watch",
-    "prod": "webpack -p"
+    "prod": "NODE_ENV=production webpack -p"
   },
   "keywords": [],
   "author": "Hung Nguyen",

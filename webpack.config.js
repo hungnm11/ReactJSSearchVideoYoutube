@@ -5,8 +5,39 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
-const extractSass = new ExtractTextPlugin('[name].style.css');
-const extractCSS = new ExtractTextPlugin('[name].bundle.css');
+const isProd = process.env.NODE_ENV === 'production';
+
+
+const extractSass = new ExtractTextPlugin({
+  filename: '[name].style.css',
+  allChunks: true,
+  disable: !isProd
+});
+const extractCSS = new ExtractTextPlugin({
+  filename: '[name].bundle.css',
+  allChunks: true,
+  disable: !isProd
+});
+
+const cssDev = [{
+  loader: "style-loader" // creates style nodes from JS strings
+}, {
+  loader: "css-loader" // translates CSS into CommonJS
+}, {
+  loader: "sass-loader" // compiles Sass to CSS
+}]
+const cssProd = extractSass.extract({
+  use: [{
+    loader: 'css-loader'
+  }, {
+    loader: 'sass-loader'
+  }],
+  fallback: 'style-loader',
+  publicPath: '/dist'
+})
+
+const cssConfig = isProd ? cssProd : cssDev;
+const portConfig = isProd ? 9000 : 8080;
 
 // const extractSass = new ExtractTextPlugin({
 //     filename: "[name].[contenthash].css",
@@ -59,16 +90,7 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        use: extractSass.extract({
-          use: [{
-              loader: 'css-loader'
-          }, {
-              loader: 'sass-loader'
-          }],
-          // use style-loader in development
-          fallback: 'style-loader',
-          publicPath: '/dist'
-        })
+        use: cssConfig
       },
        {
         test: /\.css$/,
@@ -87,7 +109,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
-    port: 9000,
+    port: portConfig,
     noInfo: true,
     watchContentBase: true,
     hot: false,

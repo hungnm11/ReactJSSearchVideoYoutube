@@ -4,7 +4,7 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 class Container extends React.Component {
   render() {
     return (
-      <div>
+      <div className="container">
       <ul>
         <li>Home</li>
         <li>About</li>
