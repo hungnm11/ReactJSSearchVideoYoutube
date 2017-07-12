@@ -4,11 +4,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin('[name].bundle.css');
+const bootstrapEntryPoints = require('./webpack.bootstrap.config.js');
 
 module.exports = {
   entry: {
     app: './src/index.js',
-    vendor: ['lodash']
+    vendor: ['lodash', 'bootstrap/dist/css/bootstrap.css'],
   },
   plugins: [
     new HtmlWebpackPlugin(),
