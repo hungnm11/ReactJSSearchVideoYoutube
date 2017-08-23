@@ -8,7 +8,11 @@ class BodyUI extends Component {
     const { data } = this.props;
     return data.map((item) => {
         return (
-          <CollectionItem key={item.id} href='#'>
+          <CollectionItem 
+            key={item.id} 
+            href='#'
+            onClick={() => console.log('hello')}
+          >
           <span className="badge">{item.price}</span>
             <div className='title'>
               {item.title}
