@@ -1,4 +1,46 @@
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap-sprockets.scss";
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import 'style.scss';
+#root {
+  nav {
+    background-color: #eee;
+    box-shadow: none;
+    .brand-logo {
+      font-size: 16px;
+      color: #000000;
+    }
+    .btn-floating {
+      &.btn-large {
+        width: 45px;
+        height: 45px;
+        box-shadow: none;
+        background-color: transparent !important;
+        position: absolute;
+        right: 0;
+        top: 5px;
+        .material-icons {
+          line-height: 45px;
+          color: #000;
+        }
+      }
+    }
+  }
 
+  .collection {
+    border: none;
+    margin: 0rem 0 1rem 0;
+    .collection-item {
+      color: #000;
+      font-size: 13px;
+      .title {
+        font-size: 14px;
+        span {
+          display: block;
+          font-size: 12px;
+          color: #ccc;
+        }
+      }
+      span.badge {
+        margin-top: 1.2rem;
+      }
+    }
+  }
+}

@@ -1,11 +1,39 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Collection, CollectionItem } from 'react-materialize';
 
 class BodyUI extends Component {
+
+  renderListView() {
+    const { data } = this.props;
+    return data.map((item) => {
+        return (
+          <CollectionItem key={item.id} href='#'>
+          <span className="badge">{item.price}</span>
+            <div className='title'>
+              {item.title}
+            <span>{item.description}</span>
+            </div>          
+          </CollectionItem>
+        )
+    });
+  }
+
   render() {
+    console.log('PROPS==>', this.props);
+    
     return (
-      <div>Body page</div>
+      <Collection>
+        {this.renderListView()}
+      </Collection>
     )
   }
 }
 
-export default BodyUI;
+const mapStateToProps = (state) => {
+  return {
+    data: state.data
+  }
+};
+
+export default connect(mapStateToProps)(BodyUI);
