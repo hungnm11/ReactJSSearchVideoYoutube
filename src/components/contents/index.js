@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import { Collection, CollectionItem } from 'react-materialize';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../actions';
 
 class BodyUI extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.selectedItemList = this.selectedItemList.bind(this);
+  }
+
+  selectedItemList(item) {
+    console.log('hello', item);
+  }
 
   renderListView() {
     const { data } = this.props;
@@ -11,7 +24,7 @@ class BodyUI extends Component {
           <CollectionItem 
             key={item.id} 
             href='#'
-            onClick={() => console.log('hello')}
+            onClick={this.selectedItemList.bind(null, item)}
           >
           <span className="badge">{item.price}</span>
             <div className='title'>
@@ -24,8 +37,6 @@ class BodyUI extends Component {
   }
 
   render() {
-    console.log('PROPS==>', this.props);
-    
     return (
       <Collection>
         {this.renderListView()}
@@ -40,4 +51,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(BodyUI);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ actions }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BodyUI);
