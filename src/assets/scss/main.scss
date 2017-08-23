@@ -28,16 +28,19 @@
     border: none;
     margin: 0rem 0 1rem 0;
     .collection-item {
-      color: #000;
-      font-size: 13px;
-      .title {
-        font-size: 14px;
-        span {
-          display: block;
-          font-size: 12px;
-          color: #ccc;
+      a {
+        .title {
+          font-size: 14px;
+          color: #000;
+          font-size: 13px;
+          span {
+            display: block;
+            font-size: 12px;
+            color: #ccc;
+          }
         }
       }
+      
       span.badge {
         margin-top: 1.2rem;
       }

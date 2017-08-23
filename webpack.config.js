@@ -112,6 +112,7 @@ module.exports = {
     noInfo: true,
     watchContentBase: true,
     hot: false,
+    historyApiFallback: true,
     // inline: false,
     // open: true
   },
