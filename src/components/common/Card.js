@@ -8,7 +8,7 @@ const Card = ({ textHeader, btnRight, btnLeft, history, item: { description } })
 
     <div className="col s12 m12">
       <div className="card darken-1">
-        <Button floating large className='red right' waves='light' icon='close' />
+        <Button floating large className='red right' waves='light' icon='close' onClick={()=> history.push('/')} />
         <div className="card-content">
           <span className="card-title">Check in Call</span>
           <p>{description}</p>
