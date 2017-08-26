@@ -1,6 +1,6 @@
-export const selectedItem = (itemId) => {
+export const fetchItem = (item) => {
   return {
-    type: 'selected_item',
-    payload: itemId
+    type: 'fetch_item',
+    payload: item
   }
 };

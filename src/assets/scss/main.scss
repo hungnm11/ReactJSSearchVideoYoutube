@@ -9,12 +9,18 @@
     }
     .btn-floating {
       &.btn-large {
+        &.right {
+          right: 0;
+        }
+        &.left {
+          left: 0;
+        }
         width: 45px;
         height: 45px;
         box-shadow: none;
         background-color: transparent !important;
         position: absolute;
-        right: 0;
+        
         top: 5px;
         .material-icons {
           line-height: 45px;

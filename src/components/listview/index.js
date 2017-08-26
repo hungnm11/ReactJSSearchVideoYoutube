@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Collection, CollectionItem } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions';
-import Header from '../header';
+import Header from '../common/Header';
 
 class BodyUI extends Component {
 
@@ -15,7 +15,8 @@ class BodyUI extends Component {
   }
 
   selectedItemList(item) {
-    console.log('hello', item);
+    
+    this.props.fetchItem(item);
   }
 
   renderListView() {
@@ -26,7 +27,7 @@ class BodyUI extends Component {
             key={item.id} 
             onClick={this.selectedItemList.bind(null, item)}
           >
-          <Link to="/view">
+          <Link to={`/view/:${item.id}`}>
           <span className="badge">{item.price}</span>
             <div className='title'>
               {item.title}
@@ -41,7 +42,10 @@ class BodyUI extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header 
+          textHeader="Select a Session"
+          btnRight={true}
+        />
         <Collection>
           {this.renderListView()}
         </Collection>
@@ -56,8 +60,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ actions }, dispatch);
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({ actions }, dispatch);
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BodyUI);
+export default connect(mapStateToProps, actions)(BodyUI);

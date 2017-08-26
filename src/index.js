@@ -3,11 +3,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Container from './container';
 import reducers from './reducers';
 import logger from 'redux-logger';
-import BodyUI from './components/contents';
-import Details from './components/details';
+import ListView from './components/listview';
+import WeekDays from './components/weekdays';
 import './assets/scss/main.scss';
 
 render(
@@ -15,8 +14,8 @@ render(
    <BrowserRouter>
       <div>
         <Switch>
-          <Route exact path="/" component={BodyUI} /> 
-          <Route path="/view" component={Details} />
+          <Route exact path="/" component={ListView} /> 
+          <Route path="/view/:id" component={WeekDays} />
         </Switch>
       </div>
     </BrowserRouter>
