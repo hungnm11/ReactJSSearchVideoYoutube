@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Collection, CollectionItem } from 'react-materialize';
 import { connect } from 'react-redux';
-import Header from '../common/Header';
+import Card from '../common/Card';
 
 class WeekDays extends Component {
 
@@ -14,11 +15,12 @@ class WeekDays extends Component {
     const { history } = this.props;
     return (
       <div>
-        <Header
+        <Card
           textHeader="Check in Call"
           btnRight={true}
           btnLeft={true}
           history={history}
+          item={this.props.item}
         />
         {title}
       </div>

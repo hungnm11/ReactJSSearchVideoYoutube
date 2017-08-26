@@ -3,54 +3,90 @@
     "id": 0,
     "title": "Chemistry Session",
     "description": "15 minute Zoom Call",
-    "price": "120"
+    "price": "120",
+    "time": {
+      "date": "3 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   },
   {
     "id": 1,
     "title": "Contracting Session",
     "description": "1 hour Zoom Call",
-    "price": "10"
+    "price": "10",
+    "time": {
+      "date": "3 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   },
   {
     "id": 2,
     "title": "Coaching Session",
     "description": "1 hour 30 minute Zoom Call",
-    "price": ""
+    "price": "",
+    "time": {
+      "date": "3 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   },
   {
     "id": 3,
     "title": "React-Redux",
     "description": "1 hour 15 minute Zoom Call",
-    "price": ""
+    "price": "",
+    "time": {
+      "date": "4 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   },
   {
     "id": 4,
     "title": "Lodash",
     "description": "1 hour Zoom Call",
-    "price": ""
+    "price": "",
+    "time": {
+      "date": "6 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   },
   {
     "id": 5,
     "title": "Redux-Thunk",
     "description": "30 minute Zoom Call",
-    "price": "15"
+    "price": "15",
+    "time": {
+      "date": "7 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   },
   {
     "id": 6,
     "title": "ESLint",
     "description": "1 hour 45 minute Zoom Call",
-    "price": ""
+    "price": "",
+    "time": {
+      "date": "8 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   },
   {
     "id": 7,
     "title": "Babel",
     "description": "1 hour Zoom Call",
-    "price": "30"
+    "price": "30",
+    "time": {
+      "date": "3 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   },
   {
     "id": 8,
     "title": "Axios",
     "description": "1 hour 30 minute Zoom Call",
-    "price": ""
+    "price": "",
+    "time": {
+      "date": "3 July, 2017",
+      "timezone": "GMT +1 (London)"
+    }
   }
 ]

@@ -1,12 +1,61 @@
 @import 'style.scss';
 #root {
+  position: relative;
   nav {
     background-color: #eee;
     box-shadow: none;
     .brand-logo {
       font-size: 16px;
       color: #000000;
+      .sub-title {
+        display: block;
+      }
     }
+    .btn-floating {
+      &.btn-large {
+        &.right {
+          right: 0;
+        }
+        &.left {
+          left: 0;
+        }
+        width: 45px;
+        height: 45px;
+        box-shadow: none;
+        background-color: transparent !important;
+        position: absolute;
+        
+        top: 5px;
+        .material-icons {
+          line-height: 45px;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .card {
+    margin: 0;
+    background-color: #eee !important;
+    width: 100%;
+    .card-title {
+      font-size: 16px;
+      margin-bottom: 0;
+      line-height: normal;
+      font-weight: normal;
+    }
+    .card-content {
+      padding: 12px 50px;
+      text-align: center;
+    }
+    .card-action {
+      border-top: none;
+      span {
+        display: block;
+        text-align: center;
+      }
+    }
+
     .btn-floating {
       &.btn-large {
         &.right {
