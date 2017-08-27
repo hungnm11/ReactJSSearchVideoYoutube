@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Collection, CollectionItem } from 'react-materialize';
 import { connect } from 'react-redux';
 import Card from '../common/Card';
+import Footer from '../footer';
 
 class WeekDays extends Component {
 
@@ -9,12 +10,67 @@ class WeekDays extends Component {
     const { id } = this.props.match.params;
   }
 
+  renderListView() {
+    return (
+      <div >
+      <CollectionItem>
+      <span className="badge">am / pm</span>
+        <div className='title'>
+          Monday (Today)
+        <span>3 July, 2017</span>
+        </div>  
+      </CollectionItem>
+      <CollectionItem>
+      <span className="badge">am / pm</span>
+        <div className='title'>
+          Monday (Today)
+        <span>3 July, 2017</span>
+        </div>  
+      </CollectionItem>
+      <CollectionItem>
+      <span className="badge">am / pm</span>
+        <div className='title'>
+          Monday (Today)
+        <span>3 July, 2017</span>
+        </div>  
+      </CollectionItem>
+      <CollectionItem>
+      <span className="badge">am / pm</span>
+        <div className='title'>
+          Monday (Today)
+        <span>3 July, 2017</span>
+        </div>  
+      </CollectionItem>
+      <CollectionItem>
+      <span className="badge">am / pm</span>
+        <div className='title'>
+          Monday (Today)
+        <span>3 July, 2017</span>
+        </div>  
+      </CollectionItem>
+      <CollectionItem>
+      <span className="badge">am / pm</span>
+        <div className='title'>
+          Monday (Today)
+        <span>3 July, 2017</span>
+        </div>  
+      </CollectionItem>
+      <CollectionItem>
+      <span className="badge">am / pm</span>
+        <div className='title'>
+          Monday (Today)
+        <span>3 July, 2017</span>
+        </div>  
+      </CollectionItem>
+      </div>
+    )
+  }
+
   render() {
-    console.log('PROPS==>', this.props)
     const { title, description } = this.props.item;
     const { history } = this.props;
     return (
-      <div>
+      <div className="weekdays">
         <Card
           textHeader="Check in Call"
           btnRight={true}
@@ -22,7 +78,10 @@ class WeekDays extends Component {
           history={history}
           item={this.props.item}
         />
-        {title}
+        <Collection>
+          {this.renderListView()}
+        </Collection>
+        <Footer />
       </div>
     );
   }
