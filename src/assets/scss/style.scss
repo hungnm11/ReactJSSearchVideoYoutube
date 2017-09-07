@@ -1,4 +1,14 @@
 // Custom style here
 #root {
-
+  nav {
+    .nav-wrapper {
+      .input-field {
+        label {
+          i.material-icons {
+            color: #000000;
+          }
+        } 
+      }
+    }
+  }
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Collection, CollectionItem } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions';
-import Header from '../common/Header';
+import Search from '../common/Search';
 
 class BodyUI extends Component {
 
@@ -42,10 +42,7 @@ class BodyUI extends Component {
   render() {
     return (
       <div>
-        <Header 
-          textHeader="Select a Session"
-          btnRight={true}
-        />
+        <Search />
         <Collection>
           {this.renderListView()}
         </Collection>
