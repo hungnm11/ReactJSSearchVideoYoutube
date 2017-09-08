@@ -67,7 +67,6 @@ class WeekDays extends Component {
   }
 
   render() {
-    const { title, description } = this.props.item;
     const { history } = this.props;
     return (
       <div className="weekdays">

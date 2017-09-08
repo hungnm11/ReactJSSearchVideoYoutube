@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
-import listReducer from './ListReducer';
+import { reducer as formReducer } from 'redux-form';
+// import listReducer from './ListReducer';
+import dataReducer from './dataReducer';
 import selectionReducer from './selectedReducer';
 import fetchItemReducer from './fetchItemReducer';
 
 export default combineReducers({
-  data: listReducer,
-  item: fetchItemReducer
+  res: dataReducer,
+  item: fetchItemReducer,
+  form: formReducer
 });

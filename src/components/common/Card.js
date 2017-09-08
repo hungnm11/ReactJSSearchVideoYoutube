@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
-const Card = ({ textHeader, btnRight, btnLeft, history, item: { description } }) => {
+const Card = ({ textHeader, btnRight, btnLeft, history }) => {
 
   return (
 
@@ -11,11 +11,11 @@ const Card = ({ textHeader, btnRight, btnLeft, history, item: { description } })
         <Button floating large className='red right' waves='light' icon='close' onClick={()=> history.push('/')} />
         <div className="card-content">
           <span className="card-title">Check in Call</span>
-          <p>{description}</p>
+          {/* <p>{description}</p> */}
         </div>
         <div className="card-action">
           <span className="card-title">Select a Day</span>
-          <span>{description}</span>
+          {/* <span>{description}</span> */}
         </div>
         <Button floating large className='red left' waves='light' icon='arrow_back' onClick={()=> history.push('/')} />
       </div>

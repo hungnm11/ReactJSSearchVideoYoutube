@@ -15,46 +15,51 @@ class BodyUI extends Component {
   }
 
   selectedItemList(item) {
-    
     this.props.fetchItem(item);
   }
 
   renderListView() {
-    const { data } = this.props;
-    return data.map((item) => {
-        return (
-          <CollectionItem 
-            key={item.id} 
-            onClick={this.selectedItemList.bind(null, item)}
-          >
-          <Link to={`/view/:${item.id}`}>
-          <span className="badge">{item.price}</span>
-            <div className='title'>
-              {item.title}
-            <span>{item.description}</span>
-            </div>  
-            </Link>       
-          </CollectionItem>
-        )
-    });
+    const { data: { items }, isFetching } = this.props.res;
+    console.log('Hello');
+    // return items.map((item) => {
+    // console.log('ITEMS', item)
+    // return (
+    //   <CollectionItem 
+    //     key={item.id} 
+    //     onClick={this.selectedItemList.bind(null, item)}
+    //   >
+    //   <Link to={`/view/:${item.id}`}>
+    //   <span className="badge">{item.price}</span>
+    //     <div className='title'>
+    //       {item.title}
+    //     <span>{item.description}</span>
+    //     </div>  
+    //     </Link>       
+    //   </CollectionItem>
+    // )
+    // });
   }
 
   render() {
+    const { isFetching, data } = this.props.res;
     return (
       <div>
         <Search />
-        <Collection>
-          {this.renderListView()}
-        </Collection>
+        {isFetching && <div>Loading...</div>}
+        {
+          Object.keys(data).length ? (
+            <Collection>
+              {this.renderListView()}
+            </Collection>
+          ) : null
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    data: state.data
-  }
+  return { res: state.res };
 };
 
 // const mapDispatchToProps = (dispatch) => {
