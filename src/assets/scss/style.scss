@@ -11,4 +11,20 @@
       }
     }
   }
+  .collection {
+    .collection-item {
+      height: 126px;
+      a {
+        display: block;
+        height: 100%;
+        .thumbnails {
+          float: left;
+          margin-right: 15px;
+          img {
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
 }
