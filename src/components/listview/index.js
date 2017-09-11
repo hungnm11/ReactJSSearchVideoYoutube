@@ -10,26 +10,18 @@ class BodyUI extends Component {
 
   constructor(props) {
     super(props);
-
-    this.selectedItemList = this.selectedItemList.bind(this);
-  }
-
-  selectedItemList(item) {
-    this.props.fetchItem(item);
   }
 
   renderListView() {
     const { data: { items }, isFetching } = this.props.res;
-    console.log('Hello');
     return items.map((item) => {
     console.log('ITEMS', item)
     const thumbImg = item.snippet.thumbnails.default.url;
     return (
       <CollectionItem 
         key={item.etag} 
-        onClick={this.selectedItemList.bind(null, item)}
       >
-      <NavLink to={`/view/${item.etag}`} >
+      <NavLink to={`/view/${item.id.videoId}`} >
       <span className="badge">View</span>
         <div className="thumbnails">
           <img src={thumbImg} />
