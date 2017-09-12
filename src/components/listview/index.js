@@ -12,16 +12,35 @@ class BodyUI extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    let nextPageToken;
+    this.props.fetchData(nextPageToken);
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", () => {
+      console.log('hello', this.props.res.data.nextPageToken);
+      const nextPage = this.props.res.data.nextPageToken;
+      const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+      const body = document.body, html = document.documentElement;
+      const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+      const windowBottom = windowHeight + window.pageYOffset;
+      if (windowBottom >= docHeight) {
+        this.props.fetchData(nextPage)
+      }
+    });
+  }
+
   renderListView() {
     const { data: { items }, isFetching } = this.props.res;
-    return items.map((item) => {
+    return items.map((item, i) => {
     const thumbImg = item.snippet.thumbnails.default.url;
     return (
       <CollectionItem 
         key={item.etag} 
       >
       <NavLink to={`/view/${item.id.videoId}`} >
-      <span className="badge">View</span>
+      <span className="badge">{i}}</span>
         <div className="thumbnails">
           <img src={thumbImg} />
         </div>

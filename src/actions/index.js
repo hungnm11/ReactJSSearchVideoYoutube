@@ -38,9 +38,8 @@ export const getKeyword = (keyword) => {
   };
 };
 
-export const fetchData = (q) => {
-  const url = `${ROOT_URL}/?q=${q}`;
-  console.log(url)
+export const fetchData = (nextPageToken) => {
+  const url = ROOT_URL;
   return (dispatch) => {
     dispatch(getData())
     axios.get(url, {
@@ -48,7 +47,7 @@ export const fetchData = (q) => {
         maxResults: 20,
         part: "snippet",
         key: API_KEY,
-        // pageToken: nextPageToken
+        pageToken: nextPageToken
       }
     })
     .then((response) => {
