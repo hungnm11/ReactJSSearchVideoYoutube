@@ -9,7 +9,9 @@ class ViewDetail extends Component {
     return (
       <div id="view-details">
         Detail
-        <iframe src={url} frameBorder="0"></iframe>
+        <div className="hs-responsive-embed">
+          <iframe src={url} frameBorder="0"></iframe>
+        </div>
       </div>
     );
   }
