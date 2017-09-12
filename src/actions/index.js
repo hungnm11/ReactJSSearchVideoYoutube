@@ -39,11 +39,18 @@ export const getKeyword = (keyword) => {
 };
 
 export const fetchData = (q) => {
-  const url = `${ROOT_URL}/?q=${q}&maxResults=25&part=snippet&key=${API_KEY}`;
+  const url = `${ROOT_URL}/?q=${q}`;
   console.log(url)
   return (dispatch) => {
     dispatch(getData())
-    axios.get(url)
+    axios.get(url, {
+      params: {
+        maxResults: 20,
+        part: "snippet",
+        key: API_KEY,
+        // pageToken: nextPageToken
+      }
+    })
     .then((response) => {
       dispatch(getDataSuccess(response));
     })

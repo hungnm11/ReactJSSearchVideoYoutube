@@ -15,7 +15,6 @@ class BodyUI extends Component {
   renderListView() {
     const { data: { items }, isFetching } = this.props.res;
     return items.map((item) => {
-    console.log('ITEMS', item)
     const thumbImg = item.snippet.thumbnails.default.url;
     return (
       <CollectionItem 
