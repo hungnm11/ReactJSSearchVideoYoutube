@@ -26,7 +26,7 @@ class BodyUI extends Component {
       const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
       const windowBottom = windowHeight + window.pageYOffset;
       if (windowBottom >= docHeight) {
-        this.props.fetchData(nextPage)
+        nextPage && this.props.fetchData(nextPage)
       }
     });
   }
