@@ -1,4 +1,4 @@
-import { FETCHING_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE, FETCH_ITEM, GET_KEYWORD } from '../actions/type';
+import { FETCHING_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE, FETCH_ITEM, GET_KEYWORD, FETCH_DATA_SUCCESS_TEST } from '../actions/type';
 
 const INITIALSTATE = {
   data: [],
@@ -26,6 +26,7 @@ export default (state = INITIALSTATE, action) => {
         isFetching: false,
         error: action.payload
       };
+
     default:
       return state;
   }
