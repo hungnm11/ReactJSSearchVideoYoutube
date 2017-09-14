@@ -3,59 +3,35 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Collection, CollectionItem } from 'react-materialize';
 import { bindActionCreators } from 'redux';
-import ReduxInfiniteScroll from 'redux-infinite-scroll';
 import * as actions from '../../actions';
 import Search from '../common/Search';
 
-class List extends Component {
+class BodyUI extends Component {
 
   constructor(props) {
     super(props);
-
-    this.onLoadMore = this.onLoadMore.bind(this);
   }
 
-
+  componentWillMount() {
+    let nextPageToken;
+    this.props.fetchData(nextPageToken);
+  }
 
   componentDidMount() {
-  
-
-    // window.addEventListener("scroll", () => {
-      
-    //   const nextPage = this.props.res.data.nextPageToken;
-    //   console.log('hello', nextPage);
-    //   const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-    //   const body = document.body, html = document.documentElement;
-    //   const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-    //   const windowBottom = windowHeight + window.pageYOffset;
-    //   if (windowBottom >= docHeight) {
-    //     this.props.fetchData(nextPage)
-    //   }
-    // });
-
-  }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener("scroll", this.onScroll, false);
-  // }
-
-  onLoadMore() {
-    this.props.fetchData();
-  }
-
-  onScroll() {
+    window.addEventListener("scroll", () => {
+      console.log('hello', this.props.res.data.nextPageToken);
+      const nextPage = this.props.res.data.nextPageToken;
       const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
       const body = document.body, html = document.documentElement;
       const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
       const windowBottom = windowHeight + window.pageYOffset;
       if (windowBottom >= docHeight) {
-        console.log('OK');
-        this.props.fetchData();
+        nextPage && this.props.fetchData(nextPage)
       }
+    });
   }
 
   renderListView() {
-    console.log('PROPS', this.props);
     const { data: { items }, isFetching } = this.props.res;
     return items.map((item, i) => {
     const thumbImg = item.snippet.thumbnails.default.url;
@@ -64,12 +40,13 @@ class List extends Component {
         key={item.etag} 
       >
       <NavLink to={`/view/${item.id.videoId}`} >
-      <span className="badge">{i}</span>
+      <span className="badge">{i}}</span>
         <div className="thumbnails">
           <img src={thumbImg} />
         </div>
         <div className='title'>
           {item.snippet.title}
+        {/* <span>{item.snippet.description}</span> */}
         </div>  
         </NavLink>       
       </CollectionItem>
@@ -78,18 +55,16 @@ class List extends Component {
   }
 
   render() {
-   
     const { isFetching, data } = this.props.res;
     return (
       <div>
-        {/* <Search /> */}
+        <Search />
         {isFetching && <div>Loading...</div>}
         {
           Object.keys(data).length ? (
-            <ReduxInfiniteScroll
-              items={this.renderListView()}
-              loadMore={this.onLoadMore.bind(this)}
-            />
+            <Collection>
+              {this.renderListView()}
+            </Collection>
           ) : null
         }
       </div>
@@ -105,4 +80,4 @@ const mapStateToProps = (state) => {
 //   return bindActionCreators({ actions }, dispatch);
 // };
 
-export default connect(mapStateToProps, actions)(List);
+export default connect(mapStateToProps, actions)(BodyUI);
