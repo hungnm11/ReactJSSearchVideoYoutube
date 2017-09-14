@@ -17,7 +17,7 @@ class BodyUI extends Component {
     this.props.fetchData(nextPageToken);
   }
 
-  componentDidMount() {
+  componentWillUpdate() {
     window.addEventListener("scroll", () => {
       console.log('hello', this.props.res.data.nextPageToken);
       const nextPage = this.props.res.data.nextPageToken;

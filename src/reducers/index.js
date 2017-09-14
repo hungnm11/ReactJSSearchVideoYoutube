@@ -4,9 +4,11 @@ import { reducer as formReducer } from 'redux-form';
 import dataReducer from './dataReducer';
 import selectionReducer from './selectedReducer';
 import fetchItemReducer from './fetchItemReducer';
+import test from './testMutation';
 
 export default combineReducers({
   res: dataReducer,
   item: fetchItemReducer,
-  form: formReducer
+  form: formReducer,
+  mutation: test
 });
