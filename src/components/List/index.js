@@ -5,12 +5,9 @@ import { Collection, CollectionItem } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions';
 import Search from '../common/Search';
+import Item from '../Item';
 
-class BodyUI extends Component {
-
-  constructor(props) {
-    super(props);
-  }
+class List extends Component {
 
   componentWillMount() {
     let nextPageToken;
@@ -19,8 +16,8 @@ class BodyUI extends Component {
 
   componentWillUpdate() {
     window.addEventListener("scroll", () => {
-      console.log('hello', this.props.res.data.nextPageToken);
-      const nextPage = this.props.res.data.nextPageToken;
+      console.log('hello', this.props.list.mutation.nextPageToken);
+      const nextPage = this.props.list.mutation.nextPageToken;
       const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
       const body = document.body, html = document.documentElement;
       const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
@@ -32,36 +29,26 @@ class BodyUI extends Component {
   }
 
   renderListView() {
-    const { data: { items }, isFetching } = this.props.res;
-    return items.map((item, i) => {
+    const { data, isFetching } = this.props.list.mutation;
+    let list = data.map((item, i) => {
     const thumbImg = item.snippet.thumbnails.default.url;
-    return (
-      <CollectionItem 
-        key={item.etag} 
-      >
-      <NavLink to={`/view/${item.id.videoId}`} >
-      <span className="badge">{i}}</span>
-        <div className="thumbnails">
-          <img src={thumbImg} />
-        </div>
-        <div className='title'>
-          {item.snippet.title}
-        {/* <span>{item.snippet.description}</span> */}
-        </div>  
-        </NavLink>       
-      </CollectionItem>
-    )
+      return (
+        <Item key={i} no={i} />
+      );
     });
+
+    return <div>{list}</div>
   }
 
   render() {
-    const { isFetching, data } = this.props.res;
+    const { isFetching, data } = this.props.list.mutation;
+    console.log('PROPS===>', this.props);
     return (
       <div>
         <Search />
-        {isFetching && <div>Loading...</div>}
+        {isFetching && data && <div>Loading...</div>}
         {
-          Object.keys(data).length ? (
+          data.length ? (
             <Collection>
               {this.renderListView()}
             </Collection>
@@ -73,11 +60,11 @@ class BodyUI extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { res: state.res };
+  return { list: state };
 };
 
 // const mapDispatchToProps = (dispatch) => {
 //   return bindActionCreators({ actions }, dispatch);
-// };
+// }
 
-export default connect(mapStateToProps, actions)(BodyUI);
+export default connect(mapStateToProps, actions)(List);

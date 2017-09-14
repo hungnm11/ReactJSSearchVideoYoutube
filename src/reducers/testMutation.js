@@ -2,7 +2,10 @@
 import update from 'immutability-helper';
 import { FETCH_DATA_SUCCESS } from '../actions/type';
 const INITSTATE = {
-  data: []
+  data: [],
+  isFetching: false,
+  error: false,
+  nextPageToken: false
 }
 
 export default (state = INITSTATE, action) => {
@@ -14,7 +17,10 @@ export default (state = INITSTATE, action) => {
       state.data.push(...action.payload.items)
       myArr = state.data
       return {
+        ...state,
         data: myArr,
+        isFetching: false,
+        nextPageToken: action.payload.nextPageToken
       };
     default:
       return state;
