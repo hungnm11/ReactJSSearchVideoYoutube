@@ -3,9 +3,10 @@ import { Collection, CollectionItem } from 'react-materialize';
 
 class Item extends Component {
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log('shouldComponentUpdate',nextProps, nextState)
-  // }
+  shouldComponentUpdate(nextProps) {
+    console.log('shouldComponentUpdate',nextProps.no)
+    return this.props.no != nextProps.no;
+  }
 
   render() {
 
