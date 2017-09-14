@@ -14,7 +14,7 @@ class List extends Component {
     this.props.fetchData(nextPageToken);
   }
 
-  componentWillUpdate() {
+  componentDidMount() {
     window.addEventListener("scroll", () => {
       console.log('hello', this.props.list.mutation.nextPageToken);
       const nextPage = this.props.list.mutation.nextPageToken;
