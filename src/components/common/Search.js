@@ -26,12 +26,12 @@ class Search extends Component {
     );
   }
 
-  onSubmitForm({keyword}) {   
-    this.props.fetchData(keyword)
+  onSubmitForm({keyword, pageToken}) {
+    console.log('======', {keyword, pageToken})
+    this.props.fetchData(keyword, pageToken)
   }
 
   render() {
-    console.log('PROPS', this.props);
     const { handleSubmit } = this.props;
     return (
       <div className="navbar-fixed">

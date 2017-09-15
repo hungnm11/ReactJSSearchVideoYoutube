@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -10,19 +11,20 @@ import Item from '../Item';
 class List extends Component {
 
   componentWillMount() {
-    let nextPageToken;
-    this.props.fetchData(nextPageToken);
+    let nextPageToken, q;
+    this.props.fetchData(q, nextPageToken);
   }
 
   componentDidMount() {
     window.addEventListener("scroll", () => {
       const nextPage = this.props.list.res.nextPageToken;
+      let q;
       const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
       const body = document.body, html = document.documentElement;
       const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
       const windowBottom = windowHeight + window.pageYOffset;
       if (windowBottom >= docHeight) {
-        nextPage && this.props.fetchData(nextPage)
+        nextPage && this.props.fetchData(q, nextPage)
       }
     });
   }

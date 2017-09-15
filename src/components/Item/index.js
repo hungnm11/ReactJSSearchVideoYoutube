@@ -20,7 +20,6 @@ class Item extends Component {
           </div>
           <div className='title'>
             {item.snippet.title}
-
           </div>
         </NavLink>
       </CollectionItem>

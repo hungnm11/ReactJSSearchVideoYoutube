@@ -1,4 +1,4 @@
-import { FETCHING_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE, FETCH_ITEM, GET_KEYWORD, FETCH_DATA_SUCCESS_TEST } from '../actions/type';
+import { FETCHING_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE, FETCH_ITEM, GET_KEYWORD, FETCH_DATA_SEARCH_SUCCESS } from '../actions/type';
 
 const INITIALSTATE = {
   data: [],
@@ -9,12 +9,12 @@ const INITIALSTATE = {
 
 export default (state = INITIALSTATE, action) => {
   switch (action.type) {
-    // case FETCHING_DATA:
-    //   return {
-    //     ...state,
-    //     data: [],
-    //     isFetching: true
-    //   };
+    case FETCHING_DATA:
+      return {
+        ...state,
+        data: [],
+        isFetching: true
+      };
     case FETCH_DATA_SUCCESS:
       let myArr = []
       state.data.push(...action.payload.items)
@@ -25,13 +25,22 @@ export default (state = INITIALSTATE, action) => {
         isFetching: false,
         nextPageToken: action.payload.nextPageToken
       };
+    case FETCH_DATA_SEARCH_SUCCESS:
+      let searchArr = []
+      state.data.push(...action.payload.items)
+      searchArr = state.data
+      return {
+        ...state,
+        data: searchArr,
+        isFetching: false,
+        nextPageToken: action.payload.nextPageToken
+      };
     case FETCH_DATA_FAILURE:
       return {
         ...state,
         isFetching: false,
         error: action.payload
       };
-
     default:
       return state;
   }

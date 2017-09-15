@@ -1,4 +1,4 @@
-import { FETCHING_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE, FETCH_ITEM, GET_KEYWORD } from './type';
+import { FETCHING_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE, FETCH_ITEM, GET_KEYWORD, FETCH_DATA_SEARCH_SUCCESS } from './type';
 import axios from 'axios';
 
 const API_KEY = 'AIzaSyAAFuih1jjBDqIM9rXj8V30brfavcXH5zM';
@@ -38,12 +38,19 @@ export const getKeyword = (keyword) => {
   };
 };
 
-export const fetchData = (nextPageToken) => {
-  const url = ROOT_URL;
+export const getDataSearch = (data) => {
+  return {
+    type: FETCH_DATA_SEARCH_SUCCESS,
+    payload: data
+  }
+};
+
+export const fetchData = (q, nextPageToken) => {
   return (dispatch) => {
-    dispatch(getData())
-    axios.get(url, {
+    // dispatch(getData())
+    axios.get(ROOT_URL, {
       params: {
+        q: q,
         maxResults: 20,
         part: "snippet",
         key: API_KEY,
@@ -52,6 +59,26 @@ export const fetchData = (nextPageToken) => {
     })
     .then((response) => {
       dispatch(getDataSuccess(response));
+    })
+    .catch((error) => {
+      dispatch(getDataFailure(error));
+    });
+  };
+};
+
+export const searchVideo = (keyword) => {
+  return (dispatch) => {
+    dispatch(getData())
+    axios.get(ROOT_URL, {
+      params : {
+        q: keyword,
+        maxResults: 20,
+        part: "snippet",
+        key: API_KEY,
+      }
+    })
+    .then((response) => {
+      dispatch(getDataSearch(response));
     })
     .catch((error) => {
       dispatch(getDataFailure(error));

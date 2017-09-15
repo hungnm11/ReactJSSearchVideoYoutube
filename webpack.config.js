@@ -113,7 +113,7 @@ module.exports = {
     watchContentBase: true,
     hot: false,
     historyApiFallback: true,
-    // inline: false,
+    inline: false,
     // open: true
   },
   devtool: "cheap-eval-source-map",
