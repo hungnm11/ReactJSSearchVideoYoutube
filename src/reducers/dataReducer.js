@@ -3,22 +3,27 @@ import { FETCHING_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE, FETCH_ITEM, GET_
 const INITIALSTATE = {
   data: [],
   isFetching: false,
-  error: false
+  error: false,
+  nextPageToken: false
 };
 
 export default (state = INITIALSTATE, action) => {
-  switch(action.type) {
-    case FETCHING_DATA:
-      return {
-        ...state,
-        data: [],
-        isFetching: true
-      };
+  switch (action.type) {
+    // case FETCHING_DATA:
+    //   return {
+    //     ...state,
+    //     data: [],
+    //     isFetching: true
+    //   };
     case FETCH_DATA_SUCCESS:
+      let myArr = []
+      state.data.push(...action.payload.items)
+      myArr = state.data
       return {
         ...state,
-        data: action.payload,
-        isFetching: false
+        data: myArr,
+        isFetching: false,
+        nextPageToken: action.payload.nextPageToken
       };
     case FETCH_DATA_FAILURE:
       return {

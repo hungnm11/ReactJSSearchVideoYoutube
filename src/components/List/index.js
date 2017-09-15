@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+
 import { Collection, CollectionItem } from 'react-materialize';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions';
@@ -16,8 +16,7 @@ class List extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", () => {
-      console.log('hello', this.props.list.mutation.nextPageToken);
-      const nextPage = this.props.list.mutation.nextPageToken;
+      const nextPage = this.props.list.res.nextPageToken;
       const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
       const body = document.body, html = document.documentElement;
       const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
@@ -29,7 +28,7 @@ class List extends Component {
   }
 
   renderListView() {
-    const { data, isFetching } = this.props.list.mutation;
+    const { data, isFetching } = this.props.list.res;
     let list = data.map((item, i) => {
     const thumbImg = item.snippet.thumbnails.default.url;
       return (
@@ -41,8 +40,7 @@ class List extends Component {
   }
 
   render() {
-    const { isFetching, data } = this.props.list.mutation;
-    console.log('PROPS===>', this.props);
+    const { isFetching, data } = this.props.list.res;
     return (
       <div>
         <Search />
