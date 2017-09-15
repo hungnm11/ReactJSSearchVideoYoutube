@@ -30,9 +30,12 @@ class List extends Component {
   renderListView() {
     const { data, isFetching } = this.props.list.res;
     let list = data.map((item, i) => {
-    const thumbImg = item.snippet.thumbnails.default.url;
       return (
-        <Item key={i} no={i} />
+        <Item 
+          key={i}
+          index={i}
+          item={item}
+        />
       );
     });
 
