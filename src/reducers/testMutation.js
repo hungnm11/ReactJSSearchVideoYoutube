@@ -1,5 +1,3 @@
-
-import update from 'immutability-helper';
 import { FETCH_DATA_SUCCESS } from '../actions/type';
 const INITSTATE = {
   data: [],

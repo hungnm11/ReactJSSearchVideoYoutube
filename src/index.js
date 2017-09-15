@@ -7,7 +7,6 @@ import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import logger from 'redux-logger';
 import ListView from './components/List';
-import WeekDays from './components/weekdays';
 import ViewDetail from './components/Detail';
 import './assets/scss/main.scss';
 
